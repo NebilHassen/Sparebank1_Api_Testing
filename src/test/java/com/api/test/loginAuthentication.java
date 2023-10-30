@@ -83,14 +83,32 @@ public class loginAuthentication {
         page.waitForLoadState();
 
         //page.frameLocator("//iframe[contains(@title, 'BankID')]").locator("//input[contains(@id, '')]").pressSequentially("qwer1234", new Locator.PressSequentiallyOptions().setDelay(25.0)); // den sier at element BankID TestBank Friendly ikke er en inputt
-        page.frameLocator("//iframe[contains(@title, 'BankID')]").locator("//html/body/div[3]/div/main/div/div[11]/div/form/div[2]/div[2]/button").click();
+
+
+        page.frameLocator("//iframe[contains(@title, 'BankID')]").locator("//html/body/div[3]/div/main/div/div[11]/div/form/div[2]/div[2]/button").click();// presses the Next button
+
 
 
         page.waitForLoadState();
 
+        System.out.println( "\nApi workers :" + page.workers());
+
+
+        page.pause(); // ga meg riktig respons
 
         System.out.println("\nApi respons url etter:" +  page.url());
         System.out.print( "\nApi respons context etter :" + page.context());
+
+
+        Response resp = page.navigate("http://example.com");
+        String location = resp.request().redirectedFrom().response().headerValue("location");
+/*
+        page.waitForCondition();
+        page.waitForClose();
+
+ */
+
+        page.close();
 
         //page.frameLocator("frame[title='BankID']").locator("BankID TestBank Friendly").fill("otp");
 
