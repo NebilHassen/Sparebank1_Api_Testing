@@ -7,6 +7,7 @@ import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.FormData;
 import com.microsoft.playwright.options.RequestOptions;
 import org.testng.annotations.*;
+import sun.jvm.hotspot.utilities.Assert;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -120,7 +121,10 @@ public class LoginAuth{
         System.out.println(( apiResponse2.status() != 200 )? " noooo" : "yeeeeees" );
 
 
-        //
+
+        // Man må alltid huske assert, hvis ikke blir metodn true hele tiden
+
+        PlaywrightAssertions.assertThat( apiResponse2.status() );
 
 
 
